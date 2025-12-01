@@ -19,10 +19,29 @@ int findMax(const vector<int>& numbers) {
 }
 
 int main() {
-    // Пример использования
-    vector<int> numbers = {5, 2, 8, 1, 9, 3};
+    int n;
+    
+    // Ввод количества элементов
+    cout << "Введите количество элементов: ";
+    cin >> n;
+    
+    if (n <= 0) {
+        cout << "Количество элементов должно быть положительным!" << endl;
+        return 1;
+    }
+    
+    // Ввод элементов массива
+    vector<int> numbers(n);
+    cout << "Введите " << n << " элементов:" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "Элемент " << i + 1 << ": ";
+        cin >> numbers[i];
+    }
+    
+    // Нахождение максимума
     int maxNumber = findMax(numbers);
     
+    // Вывод результата
     cout << "Максимальное число: " << maxNumber << endl;
     
     return 0;
