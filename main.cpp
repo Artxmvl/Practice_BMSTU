@@ -1,18 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <climits>
-using namespace std;
 
-// Метод для нахождения максимума в списке
-int findMax(const vector<int>& numbers) {
-    if (numbers.empty()) {
-        return INT_MIN;
-    }
-    
-    int max = numbers[0];
-    for (int num : numbers) {
-        if (num > max) {
-            max = num;
+int findMax(const std::vector<int>& list) {
+    int max = list[0];
+    for (int i = 1; i < list.size(); i++) {
+        if (list[i] > max) {
+            max = list[i];
         }
     }
     return max;
@@ -20,29 +13,15 @@ int findMax(const vector<int>& numbers) {
 
 int main() {
     int n;
+    std::cout << "Enter number of elements: ";
+    std::cin >> n;
     
-    // Ввод количества элементов
-    cout << "Введите количество элементов: ";
-    cin >> n;
-    
-    if (n <= 0) {
-        cout << "Количество элементов должно быть положительным!" << endl;
-        return 1;
-    }
-    
-    // Ввод элементов массива
-    vector<int> numbers(n);
-    cout << "Введите " << n << " элементов:" << endl;
+    std::vector<int> numbers(n);
+    std::cout << "Enter elements: ";
     for (int i = 0; i < n; i++) {
-        cout << "Элемент " << i + 1 << ": ";
-        cin >> numbers[i];
+        std::cin >> numbers[i];
     }
     
-    // Нахождение максимума
-    int maxNumber = findMax(numbers);
-    
-    // Вывод результата
-    cout << "Максимальное число: " << maxNumber << endl;
-    
+    std::cout << "Maximum: " << findMax(numbers) << std::endl;
     return 0;
 }
