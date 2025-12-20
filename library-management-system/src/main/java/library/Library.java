@@ -74,6 +74,17 @@ public class Library {
         operationLog.printLog();
     }
 
+    // Метод getStatistics, перенесённый cherry-pick'ом
+    public String getStatistics() {
+        int total = books.size();
+        int available = 0;
+        for (Book b : books) {
+            if (b.isAvailable()) available++;
+        }
+        int borrowed = total - available;
+        return "Всего книг: " + total + ", доступных: " + available + ", выданных: " + borrowed;
+    }
+
     // Вложенный статический класс
     public static class OperationLog {
 
@@ -125,3 +136,4 @@ public class Library {
         }
     }
 }
+
