@@ -74,7 +74,7 @@ public class Library {
         operationLog.printLog();
     }
 
-    // 1) Коммит getStatistics
+    // Коммит №1: только getStatistics
     public String getStatistics() {
         int total = books.size();
         int available = 0;
@@ -83,37 +83,6 @@ public class Library {
         }
         int borrowed = total - available;
         return "Всего книг: " + total + ", доступных: " + available + ", выданных: " + borrowed;
-    }
-
-    // 2) Коммит removeBook
-    public boolean removeBook(int id) {
-        Book book = findBookById(id);
-        if (book == null) return false;
-
-        // remove(Object) удаляет первое совпадение объекта из списка [web:89]
-        boolean removed = books.remove(book);
-
-        if (removed) {
-            // Чтобы не менять enum, пишем в лог через существующий тип
-            operationLog.addEntry(OperationLog.OperationType.ADD_BOOK,
-                    "Удалена книга: " + book.getTitle() + " (ID=" + book.getId() + ")");
-        }
-        return removed;
-    }
-
-    // 3) Коммит updateBook
-    public boolean updateBook(int id, Book newData) {
-        if (newData == null) return false;
-
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getId() == id) {
-                books.set(i, newData);
-                operationLog.addEntry(OperationLog.OperationType.ADD_BOOK,
-                        "Обновлена книга: ID=" + id);
-                return true;
-            }
-        }
-        return false;
     }
 
     // Вложенный статический класс
