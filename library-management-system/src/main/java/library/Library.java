@@ -74,7 +74,7 @@ public class Library {
         operationLog.printLog();
     }
 
-    // Коммит №1: только getStatistics
+    // Коммит №1: getStatistics
     public String getStatistics() {
         int total = books.size();
         int available = 0;
@@ -83,6 +83,20 @@ public class Library {
         }
         int borrowed = total - available;
         return "Всего книг: " + total + ", доступных: " + available + ", выданных: " + borrowed;
+    }
+
+    // Коммит №2: removeBook
+    public boolean removeBook(int id) {
+        Book book = findBookById(id);
+        if (book == null) return false;
+
+        boolean removed = books.remove(book); // remove(Object) -> true/false [web:89]
+        if (removed) {
+            // Не меняем enum, пишем в лог существующим типом
+            operationLog.addEntry(OperationLog.OperationType.ADD_BOOK,
+                    "Удалена книга: " + book.getTitle() + " (ID=" + book.getId() + ")");
+        }
+        return removed;
     }
 
     // Вложенный статический класс
