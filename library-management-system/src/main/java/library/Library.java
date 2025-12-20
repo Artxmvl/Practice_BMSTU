@@ -90,13 +90,27 @@ public class Library {
         Book book = findBookById(id);
         if (book == null) return false;
 
-        boolean removed = books.remove(book); // remove(Object) -> true/false [web:89]
+        boolean removed = books.remove(book);
         if (removed) {
-            // Не меняем enum, пишем в лог существующим типом
             operationLog.addEntry(OperationLog.OperationType.ADD_BOOK,
                     "Удалена книга: " + book.getTitle() + " (ID=" + book.getId() + ")");
         }
         return removed;
+    }
+
+    // Коммит №3: updateBook
+    public boolean updateBook(int id, Book newData) {
+        if (newData == null) return false;
+
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getId() == id) {
+                books.set(i, newData); // заменяет элемент по индексу [web:111]
+                operationLog.addEntry(OperationLog.OperationType.ADD_BOOK,
+                        "Обновлена книга: ID=" + id);
+                return true;
+            }
+        }
+        return false;
     }
 
     // Вложенный статический класс
