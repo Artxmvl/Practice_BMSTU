@@ -1,27 +1,51 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
+
+
+// Функция для нахождения максимального элемента в векторе
 int findMax(const std::vector<int>& list) {
+    // Предполагаем, что первый элемент — максимальный
     int max = list[0];
+
+
+
+    // Проходим по остальным элементам вектора
     for (int i = 1; i < list.size(); i++) {
+        // Если текущий элемент больше текущего максимума — обновляем максимум
         if (list[i] > max) {
             max = list[i];
         }
     }
+    // Возвращаем найденное значение максимума
     return max;
 }
 
+
+
+
 int main() {
-    int n;
-    std::cout << "Enter number of elements: ";
-    std::cin >> n;
-    
-    std::vector<int> numbers(n);
-    std::cout << "Enter elements: ";
+    setlocale(LC_ALL,"RU");
+    int n; // Переменная для хранения количества элементов
+
+    cout << "ВВедите Количество элементов: ";
+    cin >> n; // Считываем количество элементов
+
+    // Создаём вектор целых чисел размером n
+    vector<int> numbers(n);
+
+    cout << "Введите сами значения элементов : ";
+    // Считываем n элементов в вектор
     for (int i = 0; i < n; i++) {
-        std::cin >> numbers[i];
+        cin >> numbers[i];
     }
-    
-    std::cout << "Maximum: " << findMax(numbers) << std::endl;
-    return 0;
+
+    // Выводим максимальный элемент, найденный функцией findMax
+    cout << "Максимальное значение: " << findMax(numbers) << std::endl;
+
+
+
+    return 0; // Завершаем программу
 }
