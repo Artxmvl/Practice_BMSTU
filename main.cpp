@@ -1,27 +1,51 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
+
+
+// Функция для нахождения минимального элемента в векторе
 int findMin(const std::vector<int>& list) {
+    // Предполагаем, что первый элемент — минимальный
     int min = list[0];
+
+
+
+    // Проходим по остальным элементам вектора
     for (int i = 1; i < list.size(); i++) {
+        // Если текущий элемент меньше текущего минимума — обновляем минимум
         if (list[i] < min) {
             min = list[i];
         }
     }
+    // Возвращаем найденное значение минимума
     return min;
 }
 
+
+
+
 int main() {
-    int n;
-    std::cout << "Enter number of elements: ";
-    std::cin >> n;
-    
-    std::vector<int> numbers(n);
-    std::cout << "Enter elements: ";
+    setlocale(LC_ALL,"RU");
+    int n; // Переменная для хранения количества элементов
+
+    cout << "ВВедите Количество элементов: ";
+    cin >> n; // Считываем количество элементов
+
+    // Создаём вектор целых чисел размером n
+    vector<int> numbers(n);
+
+    cout << "Введите сами элементы элемента : ";
+    // Считываем n элементов в вектор
     for (int i = 0; i < n; i++) {
-        std::cin >> numbers[i];
+        cin >> numbers[i];
     }
-    
-    std::cout << "Minimum: " << findMin(numbers) << std::endl;
-    return 0;
+
+    // Выводим минимальный элемент, найденный функцией findMin
+    cout << "Минимальное значение: " << findMin(numbers) << std::endl;
+
+
+
+    return 0; // Завершаем программу
 }
