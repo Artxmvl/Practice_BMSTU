@@ -7,7 +7,7 @@ public class Triangle {
     double b;  // вторая сторона
     double c;  // третья сторона
 
-    // Конструктор. Сохраняем стороны и проверяем, что треугольник существует.
+    // Конструктор. Проверка и в случае успеха сохранение
     public Triangle(double a, double b, double c) {
 
         // 1. Сначала проверяем, что каждая сторона положительная
@@ -15,7 +15,7 @@ public class Triangle {
             throw new RuntimeException("There is no figure with such parameters.");
         }
 
-        // 2. Потом проверяем неравенство треугольника:
+        // 2. Потом
         // сумма любых двух сторон должна быть строго больше третьей
         if (a + b <= c) {
             throw new RuntimeException("There is no figure with such parameters.");
@@ -32,6 +32,10 @@ public class Triangle {
         this.b = b;
         this.c = c;
     }
+
+
+
+
 
     // Метод считает периметр треугольника
     double perimeter() {

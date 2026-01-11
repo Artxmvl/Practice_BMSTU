@@ -4,8 +4,8 @@ import org.example.shapes.Rectangle;
 import org.example.shapes.Circle;
 import org.example.shapes.Triangle;
 
-// Класс для проверки работы фигур
-public class Main {
+// Класс для проверки
+public class Proverki {
     public static void main(String[] args) {
         // Создаём прямоугольник со сторонами 3 и 4
         Rectangle rectangle = new Rectangle(3, 4);
