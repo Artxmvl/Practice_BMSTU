@@ -16,6 +16,10 @@ public class Main {
         // Создаём треугольник со сторонами 3, 4 и 5
         Triangle triangle = new Triangle(3, 4, 5);
 
+
+
+
+        
         // Выводим площадь и периметр прямоугольника
         System.out.println("Rectangle: area = " + rectangle.area()
                 + ", perimeter = " + rectangle.perimeter());
