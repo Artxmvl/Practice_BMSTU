@@ -2,7 +2,6 @@ package org.example.shapes;
 
 // Класс описывает круг
 public class Circle {
-
     double r;  // радиус круга
 
     // Конструктор. Сохраняем радиус и проверяем корректность.
@@ -14,6 +13,8 @@ public class Circle {
         this.r = r;
     }
 
+
+    
     // Метод считает площадь круга
     double area() {
         return Math.PI * r * r;
