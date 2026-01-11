@@ -20,11 +20,11 @@
 
 
 
-\- `Book.java` — класс книги  
+\- `ALL_of_Book.java` — класс книги  
 
-\- `Library.java` — класс библиотеки и журнал операций  
+\- `ALL_of_Library.java` — класс библиотеки и журнал операций  
 
-\- `Main.java` — пример работы с библиотекой  \[file:1]
+\- `Primer(Main).java` — пример работы с библиотекой  \[file:1]
 
 
 
@@ -36,27 +36,11 @@
 
 
 
-\- `feature/book-class` — добавлен класс `Book`.  
+\- `feature/book-class` — добавлен класс `ALL_of_Book.java`.  
 
-\- `feature/library-class` — добавлены `Library` и `Main`, а также метод `getStatistics()` (перенесён отдельным коммитом).  
+\- `feature/library-class` — добавлены `ALL_of_Library.java` и `Primer(Main).java`
 
-\- `feature/experimental` — в этой ветке добавлены методы `getStatistics()`, `removeBook()` и `updateBook()` отдельными коммитами. \[file:1]
-
-
-
-\## Что отрабатывалось в Git
-
-
-
-В рамках задания использовались:
-
-
-
-\- создание и переключение веток  
-
-\- `reset --soft`, чтобы разнести изменения по разным коммитам  
-
-\- `cherry-pick`, чтобы взять один коммит с методом `getStatistics()` из экспериментальной ветки и перенести его в `feature/library-class` \[file:1]
+\- `feature/experimental` — в этой ветке добавлены другие методы из задания 
 
 
 
