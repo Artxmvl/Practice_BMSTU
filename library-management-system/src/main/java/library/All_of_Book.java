@@ -16,6 +16,9 @@ public class Book {
         this.author = author;
         this.year = year;
     }
+
+
+    
 //далее идут уже функции
     // Вернуть название книги
     public String getTitle() {
@@ -33,7 +36,7 @@ public class Book {
     }
 
    
-    @Override
+    
     public String toString() {
         return title + " (" + author + ", " + year + ")";// Пример результата: "Война и мир (Лев Толстой, 1869)"
     }
