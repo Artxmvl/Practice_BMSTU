@@ -2,7 +2,6 @@ package org.example.shapes;
 
 // Класс описывает прямоугольник
 public class Rectangle {
-
     double a;   // ширина прямоугольника
     double b;   // длина прямоугольника
 
@@ -17,13 +16,10 @@ public class Rectangle {
     }
 
 
-<<<<<<< HEAD
 
 
 
-=======
     
->>>>>>> c43aa04147e089e8588d7c7b8a770064cf74b6d3
     // Метод считает площадь прямоугольника
     double area() {
         return a * b;
