@@ -20,7 +20,7 @@
 
 
 
-\- `ALL_of_Book.java` — класс книги  
+\- `ALL_about_the_Book.java` — класс книги  
 
 \- `ALL_of_Library.java` — класс библиотеки и журнал операций  
 
@@ -40,7 +40,7 @@
 
 \- `feature/library-class` — добавлены `ALL_of_Library.java` и `Primer(Main).java`
 
-\- `feature/experimental` — в этой ветке добавлены другие методы из задания 
+\- `feature/experimental` — в этой ветке добавлена новая функция ( ветка для экспериментов)
 
 
 
