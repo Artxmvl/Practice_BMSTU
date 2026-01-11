@@ -163,5 +163,19 @@ public class Library {
             }
         }
     }
+
+
+        // Посчитать, сколько книг этого автора есть в библиотеке
+    public int countByAuthor(String author) {
+        int count = 0; // начинаем с нуля
+        for (Book b : books) {
+            // equals сравнивает строки по содержимому
+            if (b.getAuthor().equals(author)) {
+                count++; // нашли книгу нужного автора, увеличиваем счётчик
+            }
+        }
+        return count; // возвращаем количество найденных книг
+    }
+
 }
 
