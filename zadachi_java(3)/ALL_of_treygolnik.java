@@ -14,8 +14,7 @@ public class Triangle {
         if (a <= 0 || b <= 0 || c <= 0) {
             throw new RuntimeException("There is no figure with such parameters.");
         }
-
-        // 2. Потом проверяем неравенство треугольника:
+        // 2. Потом 
         // сумма любых двух сторон должна быть строго больше третьей
         if (a + b <= c) {
             throw new RuntimeException("There is no figure with such parameters.");
@@ -33,6 +32,8 @@ public class Triangle {
         this.c = c;
     }
 
+
+    
     // Метод считает периметр треугольника
     double perimeter() {
         return a + b + c;
