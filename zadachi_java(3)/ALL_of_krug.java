@@ -15,8 +15,12 @@ public class Circle {
     }
 
 
+<<<<<<< HEAD
 
 
+=======
+    
+>>>>>>> c43aa04147e089e8588d7c7b8a770064cf74b6d3
     // Метод считает площадь круга
     double area() {
         return Math.PI * r * r;

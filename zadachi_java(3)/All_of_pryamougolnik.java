@@ -17,9 +17,13 @@ public class Rectangle {
     }
 
 
+<<<<<<< HEAD
 
 
 
+=======
+    
+>>>>>>> c43aa04147e089e8588d7c7b8a770064cf74b6d3
     // Метод считает площадь прямоугольника
     double area() {
         return a * b;
