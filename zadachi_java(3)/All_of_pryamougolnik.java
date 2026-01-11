@@ -16,6 +16,8 @@ public class Rectangle {
         this.b = b;
     }
 
+
+    
     // Метод считает площадь прямоугольника
     double area() {
         return a * b;
