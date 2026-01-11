@@ -1,169 +1,58 @@
-package library;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
+// Класс библиотеки. Хранит список книг и журнал операций.
 public class Library {
-    private final List<Book> books;
-    private final OperationLog operationLog;
 
-    public Library() {
-        this.books = new ArrayList<>();
-        this.operationLog = new OperationLog();
-    }
+    // Список всех книг в библиотеке
+    private ArrayList<Book> books = new ArrayList<>();
+    // Журнал операций (что мы делали с книгами)
+    private ArrayList<OperationLog> logs = new ArrayList<>();
 
+
+    //Функции для основной работы с книгами (типа добавить выдать и другие)
+    // Добавить книгу в библиотеку
     public void addBook(Book book) {
-        if (book == null) return;
-
         books.add(book);
-        operationLog.addEntry(OperationLog.OperationType.ADD_BOOK,
-                "Добавлена книга: " + book.getTitle() + " (ID=" + book.getId() + ")");
+        // Записываем в журнал, что книгу добавили
+        logs.add(new OperationLog("ADD", "Добавлена книга: " + book));
     }
 
-    public Book findBookById(int id) {
-        for (Book b : books) {
-            if (b.getId() == id) return b;
-        }
-        return null;
-    }
-
-    public List<Book> findBooksByAuthor(String author) {
-        List<Book> result = new ArrayList<>();
-        if (author == null) return result;
-
-        for (Book b : books) {
-            if (b.getAuthor() != null && b.getAuthor().equalsIgnoreCase(author)) {
-                result.add(b);
-            }
-        }
-        return result;
-    }
-
-    public boolean borrowBook(int id) {
-        Book book = findBookById(id);
-        if (book == null) return false;
-        if (!book.isAvailable()) return false;
-
-        book.setAvailable(false);
-        operationLog.addEntry(OperationLog.OperationType.BORROW,
-                "Выдана книга: " + book.getTitle() + " (ID=" + book.getId() + ")");
-        return true;
-    }
-
-    public boolean returnBook(int id) {
-        Book book = findBookById(id);
-        if (book == null) return false;
-        if (book.isAvailable()) return false;
-
-        book.setAvailable(true);
-        operationLog.addEntry(OperationLog.OperationType.RETURN,
-                "Возвращена книга: " + book.getTitle() + " (ID=" + book.getId() + ")");
-        return true;
-    }
-
-    public List<Book> getAvailableBooks() {
-        List<Book> result = new ArrayList<>();
-        for (Book b : books) {
-            if (b.isAvailable()) result.add(b);
-        }
-        return result;
-    }
-
-    public void printOperationLog() {
-        operationLog.printLog();
-    }
-
-    // Коммит №1: getStatistics
-    public String getStatistics() {
-        int total = books.size();
-        int available = 0;
-        for (Book b : books) {
-            if (b.isAvailable()) available++;
-        }
-        int borrowed = total - available;
-        return "Всего книг: " + total + ", доступных: " + available + ", выданных: " + borrowed;
-    }
-
-    // Коммит №2: removeBook
-    public boolean removeBook(int id) {
-        Book book = findBookById(id);
-        if (book == null) return false;
-
-        boolean removed = books.remove(book);
-        if (removed) {
-            operationLog.addEntry(OperationLog.OperationType.ADD_BOOK,
-                    "Удалена книга: " + book.getTitle() + " (ID=" + book.getId() + ")");
-        }
-        return removed;
-    }
-
-    // Коммит №3: updateBook
-    public boolean updateBook(int id, Book newData) {
-        if (newData == null) return false;
-
+    // Выдать книгу: находим по названию и убираем из списка
+    public void checkoutBook(String title) {
         for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getId() == id) {
-                books.set(i, newData); // заменяет элемент по индексу [web:111]
-                operationLog.addEntry(OperationLog.OperationType.ADD_BOOK,
-                        "Обновлена книга: ID=" + id);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Вложенный статический класс
-    public static class OperationLog {
-
-        // Внутренний класс для записи операции
-        public class LogEntry {
-            private final OperationType type;
-            private final LocalDateTime timestamp;
-            private final String description;
-
-            public LogEntry(OperationType type, LocalDateTime timestamp, String description) {
-                this.type = type;
-                this.timestamp = timestamp;
-                this.description = description;
-            }
-
-            @Override
-            public String toString() {
-                return "[" + timestamp + "] " + type + " — " + description;
-            }
-        }
-
-        public enum OperationType {
-            ADD_BOOK, BORROW, RETURN
-        }
-
-        private final List<LogEntry> entries;
-
-        public OperationLog() {
-            this.entries = new ArrayList<>();
-        }
-
-        public void addEntry(OperationType type, String description) {
-            entries.add(new LogEntry(type, LocalDateTime.now(), description));
-        }
-
-        public List<LogEntry> getEntries() {
-            return new ArrayList<>(entries);
-        }
-
-        public void printLog() {
-            if (entries.isEmpty()) {
-                System.out.println("Журнал операций пуст.");
-                return;
-            }
-            System.out.println("Журнал операций:");
-            for (LogEntry e : entries) {
-                System.out.println(e);
+            Book b = books.get(i);
+            if (b.getTitle().equals(title)) {
+                books.remove(i);
+                // Записываем в журнал, что книгу выдали
+                logs.add(new OperationLog("CHECKOUT", "Книга выдана: " + b));
+                return; // выходим после первой найденной
             }
         }
     }
 
+    // Вернуть книгу в библиотеку
+    public void returnBook(Book book) {
+        books.add(book);
+        // Записываем в журнал, что книгу вернули
+        logs.add(new OperationLog("RETURN", "Книга возвращена: " + book));
+    }
+
+    // Вывести список всех книг
+    public void printBooks() {
+        System.out.println("Все Книги в библиотеке ");
+        for (int i = 0; i < books.size(); i++) {
+            System.out.println((i + 1) + ". " + books.get(i));
+        }
+    }
+
+    // Вывести журнал всех операций
+    public void printLogs() {
+        System.out.println("Всего Журнал операций ");
+        for (OperationLog log : logs) {
+            System.out.println(log);
+        }
+    }
 
         // Посчитать, сколько книг этого автора есть в библиотеке
     public int countByAuthor(String author) {
@@ -177,5 +66,21 @@ public class Library {
         return count; // возвращаем количество найденных книг
     }
 
-}
+    // Вложенный статический класс — одна запись в журнале
+    public static class OperationLog {
+        private String type;      // тип операции: ADD, CHECKOUT, RETURN
+        private String message;   // текстовое описание операции
 
+        // Конструктор записи журнала
+        public OperationLog(String type, String message) {
+            this.type = type;
+            this.message = message;
+        }
+
+        // Как выводится запись журнала(по типу красивого вывода из других заданий) 
+        public String toString() {
+            return type + ": " + message;
+        }
+    }
+
+}
