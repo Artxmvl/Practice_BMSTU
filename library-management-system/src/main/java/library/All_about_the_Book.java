@@ -1,54 +1,43 @@
-package library;
-
+// Класс книги. Здесь просто держатся самые базовые данные.
 public class Book {
-    private final int id;
-    private final String title;
-    private final String author;
-    private final int year;
-    private final String isbn;
-    private boolean available;
 
-    public Book(int id, String title, String author, int year, String isbn) {
-        this.id = id;
+    // Название книги 
+    private String title;
+    // Автор книги 
+    private String author;
+    // Год издания.
+    private int year;
+
+    
+    // Конструктор. Через него создаём новую книгу.
+    public Book(String title, String author, int year) {
+        // Сохраняем значения из параметров во внутренние поля объекта
         this.title = title;
         this.author = author;
         this.year = year;
-        this.isbn = isbn;
-        this.available = true; // true = в библиотеке
     }
 
-    public int getId() {
-        return id;
-    }
 
+    
+//далее идут уже функции
+    // Вернуть название книги
     public String getTitle() {
         return title;
     }
 
+    // Вернуть автора
     public String getAuthor() {
         return author;
     }
 
+    // Вернуть год 
     public int getYear() {
         return year;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
-    @Override
+   
+    //красивый вывод книзи
     public String toString() {
-        String status = available ? "Доступна" : "Выдана";
-        return String.format("[ID: %d] \"%s\" — %s (%d)%nISBN: %s | Статус: %s",
-                id, title, author, year, isbn, status);
+        return title + " (" + author + ", " + year + ")";// Пример результата: "Война и мир (Лев Толстой, 1869)"
     }
 }
