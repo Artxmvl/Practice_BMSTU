@@ -1,47 +1,41 @@
-
-
-package library;
-
-import java.util.List;
-
+// Пример работы с библиотекой.(для двух книг )
+// Здесь создаём пару книг и проверяем простые операции.
 public class Main {
     public static void main(String[] args) {
+
+        // Создаём две книги
+        Book b1 = new Book("Три мушкетёра", "Александр Дюма", 1844);
+        Book b2 = new Book("Маленький принц", "Антуан де Сент-Экзюпери", 1943);
+
+        
+        // Создаём библиотеку
         Library library = new Library();
 
-        library.addBook(new Book(1, "Война и мир",
-                "Л.Н. Толстой", 1869, "978-5-17-090335-2"));
-        library.addBook(new Book(2, "Преступление и наказание",
-                "Ф.М. Достоевский", 1866, "978-5-17-090336-9"));
-        library.addBook(new Book(3, "Анна Каренина",
-                "Л.Н. Толстой", 1877, "978-5-17-090337-6"));
 
-        System.out.println("=== Доступные книги ===");
-        printBooks(library.getAvailableBooks());
+        //сама работа с библиотекой черз функции
+        // Кладём книги в библиотеку
+        library.addBook(b1);
+        library.addBook(b2);
 
-        System.out.println("=== Поиск по ID=2 ===");
-        System.out.println(library.findBookById(2));
+        // Показываем, что сейчас в библиотеке
+        library.printBooks();
 
-        System.out.println("\n=== Книги автора: Л.Н. Толстой ===");
-        printBooks(library.findBooksByAuthor("Л.Н. Толстой"));
+        // Считаем, сколько книг у автора "Александр Дюма"
+        int dumasCount = library.countByAuthor("Александр Дюма");
+        System.out.println();
+        System.out.println("Книг Александра Дюма в библиотеке: " + dumasCount);
 
-        System.out.println("\n=== Выдача книги ID=1 ===");
-        System.out.println(library.borrowBook(1) ? "Выдана" : "Не удалось выдать");
+        // Выдаём одну книгу
+        System.out.println();
+        System.out.println("Выдаём книгу: Маленький принц");
+        library.checkoutBook("Маленький принц");
 
-        System.out.println("\n=== Возврат книги ID=1 ===");
-        System.out.println(library.returnBook(1) ? "Возвращена" : "Не удалось вернуть");
+        // Ещё раз показываем книги
+        System.out.println();
+        library.printBooks();
 
-        System.out.println("\n=== Журнал операций ===");
-        library.printOperationLog();
-    }
-
-    private static void printBooks(List<Book> books) {
-        if (books == null || books.isEmpty()) {
-            System.out.println("Список пуст.");
-            return;
-        }
-        for (Book b : books) {
-            System.out.println(b);
-            System.out.println();
-        }
+        // Смотрим журнал операций
+        System.out.println();
+        library.printLogs();
     }
 }
