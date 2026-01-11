@@ -17,13 +17,13 @@ public class Triangle {
 
         // 2. Потом проверяем неравенство треугольника:
         // сумма любых двух сторон должна быть строго больше третьей
-        if (a + b <= c) {
+        if (a + b < c) {
             throw new RuntimeException("There is no figure with such parameters.");
         }
-        if (a + c <= b) {
+        if (a + c < b) {
             throw new RuntimeException("There is no figure with such parameters.");
         }
-        if (b + c <= a) {
+        if (b + c < a) {
             throw new RuntimeException("There is no figure with such parameters.");
         }
 
